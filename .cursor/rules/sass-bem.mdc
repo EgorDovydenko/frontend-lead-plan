@@ -1,0 +1,19 @@
+---
+description: SASS modules, BEM, and Concentric CSS property order
+globs: "**/*.{scss,sass,css}"
+alwaysApply: false
+---
+
+# SASS / BEM
+
+Use BEM: `.block__element--modifier`.
+
+Property order per rule (blank lines between groups):
+
+1. Positioning (`position`, `top`, `z-index`, …)
+2. Box model size (`width`, `height`, …)
+3. Spacing (`padding`, `margin`, …)
+4. Display & layout (`display`, `flex`, `gap`, …)
+5. Background & borders
+6. Typography
+7. Other (`cursor`, `opacity`, `transition`, …)

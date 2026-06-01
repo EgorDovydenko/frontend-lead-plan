@@ -15,6 +15,8 @@ function TrackBadge({ track }) {
 function TopicItem({ topic, isCompleted, onToggle }) {
   const [expanded, setExpanded] = useState(false);
 
+  const toggleExpanded = () => setExpanded((v) => !v);
+
   return (
     <div
       className={[
@@ -26,7 +28,11 @@ function TopicItem({ topic, isCompleted, onToggle }) {
     >
       <div className="flex items-start gap-3 p-3">
         <button
-          onClick={() => onToggle(topic.id)}
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle(topic.id);
+          }}
           className={[
             "mt-0.5 flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors",
             isCompleted
@@ -54,34 +60,37 @@ function TopicItem({ topic, isCompleted, onToggle }) {
           )}
         </button>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-center gap-2 mb-1">
-            <TrackBadge track={topic.track} />
-            <span
-              className={`text-sm font-medium ${isCompleted ? "line-through text-slate-400" : "text-slate-800"}`}
-            >
-              {topic.title}
-            </span>
+        <button
+          type="button"
+          onClick={toggleExpanded}
+          className="flex-1 min-w-0 flex items-start gap-2 text-left rounded-md -m-1 p-1 hover:bg-slate-50 transition-colors cursor-pointer"
+          aria-expanded={expanded}
+          title={expanded ? "Свернуть" : "Подробнее"}
+        >
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <TrackBadge track={topic.track} />
+              <span
+                className={`text-sm font-medium ${isCompleted ? "line-through text-slate-400" : "text-slate-800"}`}
+              >
+                {topic.title}
+              </span>
+            </div>
+
+            {expanded && (
+              <p className="text-xs text-slate-600 leading-relaxed mt-2 pr-2">
+                {topic.detail}
+              </p>
+            )}
           </div>
 
-          {expanded && (
-            <p className="text-xs text-slate-600 leading-relaxed mt-2 pr-2">
-              {topic.detail}
-            </p>
-          )}
-        </div>
-
-        <button
-          onClick={() => setExpanded((v) => !v)}
-          className="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors"
-          title="Подробнее"
-        >
           <svg
-            className={`w-4 h-4 transition-transform ${expanded ? "rotate-180" : ""}`}
+            className={`flex-shrink-0 w-4 h-4 mt-0.5 text-slate-400 transition-transform ${expanded ? "rotate-180" : ""}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
+            aria-hidden
           >
             <path
               strokeLinecap="round"
@@ -117,8 +126,9 @@ export default function Roadmap({ isCompleted, onToggle }) {
           Дорожная карта на год
         </h2>
         <p className="text-sm text-slate-500 mt-1">
-          40 тем по 3 трекам. Отмечай изученные — прогресс сохраняется.
-          Разворачивай тему чтобы увидеть детали.
+          {roadmap.flatMap((q) => q.topics).length} тем по 3 трекам. Отмечай
+          изученные — прогресс сохраняется. Нажми на тему, чтобы увидеть
+          детали.
         </p>
       </div>
 

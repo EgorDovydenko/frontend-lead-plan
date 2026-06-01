@@ -1,0 +1,25 @@
+---
+description: React component patterns, exports, and performance
+globs: "**/*.{tsx,jsx}"
+alwaysApply: false
+---
+
+# Components
+
+- **Named exports only** — no default exports
+- **No `React.FC`** — type props directly: `({ title }: TitleProps) => { ... }`
+- Import hooks destructured: `import { useState, useEffect } from 'react'` — no `React.` prefix
+- Use `memo` / `useCallback` only when there is a measurable render issue — not preemptively
+
+## Lists
+
+- Never use array index as `key` for dynamic or reorderable lists
+- Use stable ids from data (e.g. `item.id`)
+
+## SVG icons
+
+```tsx
+import ArrowBackIcon from "@/assets/icons/arrow_left.svg?react";
+```
+
+Never inline SVG markup in TSX.

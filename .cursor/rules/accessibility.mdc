@@ -1,0 +1,11 @@
+---
+description: Accessibility (a11y) requirements
+globs: "**/*.{tsx,jsx}"
+alwaysApply: false
+---
+
+# Accessibility
+
+- Prefer semantic HTML: `<nav>`, `<main>`, `<section>`, `<button>`
+- Interactive UI must be keyboard-accessible — `<button>` over `<div onClick>`
+- Meaningful images: descriptive `alt`; decorative: `alt=""`

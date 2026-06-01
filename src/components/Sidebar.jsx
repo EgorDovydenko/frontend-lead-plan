@@ -38,7 +38,7 @@ export default function Sidebar({ active, onNavigate }) {
       <div className="mt-auto p-4 hidden md:block">
         <div className="text-xs text-slate-400 leading-relaxed">
           <p>Инструменты:</p>
-          <p>Notion · GitHub Copilot</p>
+          <p>Notion · Cursor · Gemini</p>
           <p>CodeSandbox · Playwright</p>
         </div>
       </div>
