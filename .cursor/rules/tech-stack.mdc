@@ -1,0 +1,25 @@
+---
+description: Tech stack and architecture defaults for React projects
+alwaysApply: true
+---
+
+# Tech Stack
+
+- **Framework:** React / Next.js (App Router preferred)
+- **Data fetching:** SWR — fetchers in `shared/api/`
+- **Styling:** SASS Modules + BEM
+- **Icons:** SVG via `vite-plugin-svgr` with `?react` suffix — never inline SVG in TSX
+
+## Project structure
+
+```
+src/
+  shared/
+    components/   # Reusable UI
+    hooks/
+    api/          # SWR fetchers
+    types/
+    constants/
+```
+
+Each component in its own folder: `index.tsx`, `index.module.scss`, optional `types.ts` / `constants.ts`.
