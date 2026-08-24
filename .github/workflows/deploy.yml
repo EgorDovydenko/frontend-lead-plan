@@ -32,9 +32,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to gh-pages branch
+      - name: Deploy to main branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          branch: gh-pages
+          branch: main
           single-commit: true
