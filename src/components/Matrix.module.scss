@@ -1,0 +1,251 @@
+@use "../styles/variables" as *;
+
+.matrix {
+  max-width: 64rem;
+}
+
+.matrix__header {
+  margin-bottom: 24px;
+}
+
+.matrix__title {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.matrix__desc {
+  margin: 4px 0 0;
+
+  font-size: 14px;
+  color: $color-text-muted;
+}
+
+.matrix__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.matrix__tab {
+  padding: 8px 12px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: $color-text-muted;
+
+  background-color: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-border-strong;
+    color: $color-text;
+  }
+}
+
+.matrix__tab--active {
+  color: #fff;
+  background-color: $color-accent;
+  border-color: $color-accent;
+}
+
+.matrix__levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.matrix__levelBtn {
+  padding: 6px 12px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: $color-text-muted;
+
+  background: transparent;
+  border: 1px solid $color-border;
+  border-radius: $radius-full;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-border-strong;
+  }
+}
+
+.matrix__levelBtn--active {
+  color: $color-text;
+  background-color: $color-bg-hover;
+  border-color: $color-border-strong;
+}
+
+.matrix__levelBtn--filter {
+  color: #fff;
+  background-color: #3d4660;
+  border-color: #3d4660;
+}
+
+.matrix__grid {
+  display: grid;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.matrix__grid--single {
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.levelCard {
+  overflow: hidden;
+
+  border: 2px solid $color-border;
+  border-radius: $radius-lg;
+}
+
+.levelCard--junior {
+  border-color: rgba(148, 163, 184, 0.35);
+  background-color: rgba(148, 163, 184, 0.06);
+}
+
+.levelCard--middle {
+  border-color: rgba(96, 165, 250, 0.35);
+  background-color: rgba(96, 165, 250, 0.06);
+}
+
+.levelCard--senior {
+  border-color: rgba(167, 139, 250, 0.35);
+  background-color: rgba(167, 139, 250, 0.06);
+}
+
+.levelCard--lead {
+  border-color: rgba(129, 140, 248, 0.5);
+  background-color: rgba(129, 140, 248, 0.08);
+}
+
+.levelCard__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+
+  border-bottom: 1px solid $color-border;
+}
+
+.levelCard__dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: $radius-full;
+}
+
+.levelCard--junior .levelCard__dot {
+  background-color: #94a3b8;
+}
+
+.levelCard--middle .levelCard__dot {
+  background-color: #60a5fa;
+}
+
+.levelCard--senior .levelCard__dot {
+  background-color: #a78bfa;
+}
+
+.levelCard--lead .levelCard__dot {
+  background-color: $color-accent;
+}
+
+.levelCard__name {
+  font-size: 14px;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.levelCard__badge {
+  margin-left: auto;
+  padding: 2px 8px;
+
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+
+  background-color: $color-accent;
+  border-radius: $radius-full;
+}
+
+.levelCard__list {
+  margin: 0;
+  padding: 16px;
+  list-style: none;
+}
+
+.levelCard__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  line-height: 1.45;
+  color: $color-text-muted;
+
+  user-select: text;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.levelCard__bullet {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 7px;
+  border-radius: $radius-full;
+}
+
+.levelCard--junior .levelCard__bullet {
+  background-color: #94a3b8;
+}
+
+.levelCard--middle .levelCard__bullet {
+  background-color: #60a5fa;
+}
+
+.levelCard--senior .levelCard__bullet {
+  background-color: #a78bfa;
+}
+
+.levelCard--lead .levelCard__bullet {
+  background-color: $color-accent;
+}
+
+.matrix__hint {
+  margin-top: 24px;
+  padding: 16px;
+
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fcd34d;
+
+  background-color: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: $radius-md;
+}
+
+.matrix__hintStrong {
+  font-weight: 600;
+}
