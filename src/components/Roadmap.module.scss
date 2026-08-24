@@ -1,0 +1,308 @@
+@use "../styles/variables" as *;
+
+.roadmap {
+  max-width: 56rem;
+}
+
+.roadmap__header {
+  margin-bottom: 24px;
+}
+
+.roadmap__title {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.roadmap__desc {
+  margin: 4px 0 0;
+
+  font-size: 14px;
+  color: $color-text-muted;
+}
+
+.roadmap__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quarter {
+  overflow: hidden;
+
+  border: 2px solid $color-border;
+  border-radius: $radius-lg;
+}
+
+@each $name, $color in (
+  q1: $theme-q1,
+  q2: $theme-q2,
+  q3: $theme-q3,
+  q4: $theme-q4,
+  q5: $theme-q5,
+  q6: $theme-q6
+) {
+  .quarter--#{$name} {
+    border-color: rgba($color, 0.45);
+
+    .quarter__header {
+      background-color: rgba($color, 0.08);
+    }
+
+    .quarter__title {
+      color: $color;
+    }
+
+    .quarter__count {
+      color: $color;
+    }
+
+    .quarter__barFill {
+      background-color: $color;
+    }
+
+    .quarter__chevron {
+      color: $color;
+    }
+  }
+}
+
+.quarter__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+
+  text-align: left;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+
+  &:hover {
+    filter: brightness(1.05);
+  }
+}
+
+.quarter__headerMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.quarter__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.quarter__tagline {
+  display: none;
+  margin: 4px 0 0;
+
+  font-size: 12px;
+  color: $color-text-muted;
+
+  @media (min-width: 640px) {
+    display: block;
+  }
+}
+
+.quarter__meta {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+  margin-left: 16px;
+}
+
+.quarter__stats {
+  display: none;
+  text-align: right;
+
+  @media (min-width: 640px) {
+    display: block;
+  }
+}
+
+.quarter__count {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.quarter__pct {
+  font-size: 12px;
+  color: $color-text-muted;
+}
+
+.quarter__bar {
+  display: none;
+  width: 80px;
+  height: 6px;
+  overflow: hidden;
+
+  background-color: $color-border;
+  border-radius: $radius-full;
+
+  @media (min-width: 640px) {
+    display: block;
+  }
+}
+
+.quarter__barFill {
+  height: 100%;
+  border-radius: $radius-full;
+  transition: width 0.3s ease;
+}
+
+.quarter__chevron {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.quarter__chevron--open {
+  transform: rotate(180deg);
+}
+
+.quarter__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+
+  background-color: $color-bg-card;
+  border-top: 1px solid $color-border;
+}
+
+.quarter__empty {
+  padding: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: $color-text-faint;
+}
+
+.topic {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.topic--done {
+  opacity: 0.72;
+  background-color: rgba($color-bg-hover, 0.5);
+}
+
+.topic:not(.topic--done) {
+  background-color: $color-bg-elevated;
+}
+
+.topic__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+}
+
+.topic__check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: 2px solid $color-border-strong;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.topic__check:hover {
+  border-color: $color-accent;
+}
+
+.topic__check--done {
+  color: $color-bg;
+  background-color: $color-success;
+  border-color: $color-success;
+}
+
+.topic__checkIcon {
+  width: 12px;
+  height: 12px;
+}
+
+.topic__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.topic__toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 4px;
+  margin: -4px;
+
+  font-family: inherit;
+  text-align: left;
+
+  background: transparent;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-bg-hover;
+  }
+}
+
+.topic__title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-text;
+}
+
+.topic__title--done {
+  color: $color-text-faint;
+  text-decoration: line-through;
+}
+
+.topic__chevron {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  color: $color-text-faint;
+  transition: transform 0.2s ease;
+}
+
+.topic__chevron--open {
+  transform: rotate(180deg);
+}
+
+.topic__detail {
+  margin: 0 12px 12px 44px;
+  padding: 12px;
+
+  font-size: 13px;
+  line-height: 1.65;
+  color: $color-text-muted;
+
+  user-select: text;
+  cursor: text;
+
+  background-color: rgba($color-bg, 0.6);
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+}

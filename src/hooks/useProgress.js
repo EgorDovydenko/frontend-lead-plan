@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { roadmap } from "../data/roadmap.js";
 
-const STORAGE_KEY = "flp-progress-v1";
+const STORAGE_KEY = "flp-progress-v2";
 
 function loadCompleted() {
   try {
@@ -49,17 +49,10 @@ export function useProgress() {
     const byQuarter = roadmap.map((q) => {
       const qTotal = q.topics.length;
       const qDone = q.topics.filter((t) => completed.has(t.id)).length;
-      return { id: q.id, title: q.title, total: qTotal, done: qDone };
+      return { id: q.id, theme: q.theme, title: q.title, total: qTotal, done: qDone };
     });
 
-    const trackIds = ["frontend", "ai", "pm"];
-    const byTrack = trackIds.map((track) => {
-      const tTopics = allTopics.filter((t) => t.track === track);
-      const tDone = tTopics.filter((t) => completed.has(t.id)).length;
-      return { track, total: tTopics.length, done: tDone };
-    });
-
-    return { total, done, byQuarter, byTrack };
+    return { total, done, byQuarter };
   })();
 
   return { completed, toggle, isCompleted, stats };
