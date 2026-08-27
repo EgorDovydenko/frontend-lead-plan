@@ -31,6 +31,8 @@ jobs:
 
       - name: Build
         run: rm -rf dist && npm run build
+        env:
+          VITE_MY_NAME: ${{ vars.VITE_MY_NAME }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
