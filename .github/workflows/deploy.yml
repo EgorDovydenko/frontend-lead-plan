@@ -1,17 +1,8 @@
-name: Deploy to GitHub Pages
+name: Lead plan
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
+    branches: [main]
 
 jobs:
   deploy:
@@ -32,9 +23,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to main branch
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          folder: dist
-          branch: main
-          single-commit: true
+          path: dist
+      
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v4
