@@ -28,7 +28,10 @@ export default function Progress({ stats, isCompleted }) {
     <div className={styles.progress}>
       <header className={styles.progress__header}>
         <h2 className={styles.progress__title}>
-          Мой прогресс {import.meta.env.VITE_MY_NAME}
+          Мой прогресс{" "}
+          {import.meta.env.VITE_MY_NAME
+            ? import.meta.env.VITE_MY_NAME
+            : "Аноним"}
         </h2>
         <p className={styles.progress__desc}>
           Отмечай темы в дорожной карте — здесь отображается общая картина по
